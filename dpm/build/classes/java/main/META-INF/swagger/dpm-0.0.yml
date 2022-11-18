@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: dpm
+  version: "0.0"
+paths:
+  /audio:
+    get:
+      operationId: ping
+      responses:
+        "200":
+          description: ping 200 response
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Object'
+    post:
+      operationId: uploadFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        "400":
+          description: Unknown error
+        "200":
+          description: upload audio file
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+components:
+  schemas:
+    Object:
+      type: object
